@@ -20,3 +20,38 @@
 
 
 
+class Solution {
+public:
+//Brute Force (issue: TC: O(n^2))
+    int maxProfit(vector<int>& prices) {
+        map <int, unordered_map<int,int>> m;
+        m[0].insert({0,0});
+        for (int i = 0; i< prices.size(); ++i){
+            for (int j = i+1; j<prices.size();++j){
+                if (prices[j]-prices[i]>m.rbegin()->first){
+                    m[prices[j]-prices[i]].insert({prices[j],prices[i]});
+                }
+            }
+        }
+        int profit = m.rbegin()->first;
+        return profit;
+    }
+};
+
+
+
+
+
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int minVal = INT_MAX;
+        int MaxProfit = 0;
+        for (int iter:prices){
+            minVal = min(minVal,iter);
+            MaxProfit = max(MaxProfit, iter-minVal);
+        }
+        return MaxProfit;
+    }
+};
