@@ -15,3 +15,49 @@
 // Output: [0,0,9,0,0]
 
 
+class Solution {
+public:
+//issue: TC: (O(n^2))
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector <int> answer (nums.size());
+        for (int j = 0; j<nums.size();++j){
+            int pro = 1;
+            for (int i = 0; i< nums.size(); ++i){
+                if (j != i){
+                    pro = pro * nums[i];
+                }
+            }
+            answer[j] = pro;
+        }
+        return answer;
+    }
+};
+
+
+
+
+
+//Optimised
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector <int> ans1(n,1);
+        // vector <int> ans2(n,1);
+        int prefix=1, suffix = 1;
+        for (int i = 1; i < n; ++i){
+            prefix *= nums[i-1];
+            ans1[i]=prefix;
+        }
+        for (int i = n-2; i>=0; --i){
+            suffix *= nums[i+1];
+            // ans2[i]=suffix;
+            ans1[i] = ans1[i] * suffix;
+        }
+        // vector <int> answer (n);
+        // for (int i = 0; i<n;++i){
+        //     answer[i] = ans1[i]*ans2[i];
+        // }
+        return ans1;
+    }
+};
