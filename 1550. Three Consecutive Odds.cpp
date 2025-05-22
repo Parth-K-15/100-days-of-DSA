@@ -11,3 +11,17 @@
 // Input: arr = [1,2,34,3,4,5,7,23,12]
 // Output: true
 // Explanation: [5,7,23] are three consecutive odds.
+
+
+
+class Solution {
+public:
+    bool threeConsecutiveOdds(vector<int>& arr) {
+        for (int i = 2; i<arr.size();++i){
+            if (arr[i-2] % 2 != 0 && arr[i-1] % 2 != 0 && arr[i] % 2 != 0){
+                return true;
+            }
+        }
+        return false;
+    }
+};
