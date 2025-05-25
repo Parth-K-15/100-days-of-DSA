@@ -26,3 +26,44 @@ Input: nums = [11,13,15,17]
 Output: 11
 Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
   
+
+
+
+
+class Solution {
+public:
+//Accepted but here TC was O(n)
+
+    int findMin(vector<int>& nums) {
+        for (int i =0; i<nums.size()-1;++i){
+            if (nums[i] > nums[i+1]){
+                return nums[i+1];
+            }
+        }
+        return nums[0];
+    }
+};
+
+
+
+
+
+
+class Solution {
+public:
+// Using binary search TC:O(log n)
+    int findMin(vector<int>& nums) {
+        int left = 0, right = nums.size()-1;
+        int mid;
+        while(left < right){
+            mid = (left + right)/2;
+            if (nums[mid]>nums[right]){
+                left = mid+1;
+            }
+            else{
+                right = mid;   //ex: 5 6 7 1 2 3 4 (need to include mid)
+            }
+        }
+            return nums[left];
+    }
+};
