@@ -20,3 +20,56 @@ Input: s = " "
 Output: true
 Explanation: s is an empty string "" after removing non-alphanumeric characters.
 Since an empty string reads the same forward and backward, it is a palindrome.
+
+
+
+
+ class Solution {
+public:
+ //Accepted but not optimised
+    bool isPalindrome(string s) {
+        for (char &c:s){
+            c = tolower(c);
+        }
+        string result;
+        for (char c : s) {
+            if (isalnum(c)) {
+                result += c;
+            }
+        }
+        int i = 0, j=result.length()-1;
+        while(i<=j){
+            if (result[i] != result[j]){
+                return false;
+            }
+            i++;j--;
+        }
+        return true;
+    }
+};
+
+
+
+
+
+
+
+
+class Solution {
+public:
+//Optimised
+    bool isPalindrome(string s) {
+        int i = 0, j = s.length() - 1;
+        while (i <= j) {
+            while (i <= j && !isalnum(s[i]))
+                ++i;
+            while (i <= j && !isalnum(s[j]))
+                --j;
+            if (i <= j && tolower(s[i]) != tolower(s[j]))
+                return false; // i<=j to get correct result for " "
+            ++i;
+            --j;
+        }
+        return true;
+    }
+};
