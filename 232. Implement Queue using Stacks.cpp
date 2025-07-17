@@ -73,5 +73,5 @@ public:
  * obj->push(x);
  * int param_2 = obj->pop();
  * int param_3 = obj->peek();
- * bool param_4 = obj->empty();
+ * bool param_4 = obj->empty(); 
  */
