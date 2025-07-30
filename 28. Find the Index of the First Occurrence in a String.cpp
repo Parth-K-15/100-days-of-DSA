@@ -18,3 +18,22 @@ Explanation: "leeto" did not occur in "leetcode", so we return -1.
 
 
 
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int len = needle.length();
+        int mainLen = haystack.length();
+        if (mainLen < len) return -1;
+        int left = 0, right = len-1;
+        while (right < mainLen){
+            int temp = left;
+            int i = 0;
+            while (i<len && haystack[temp] == needle[i]){
+                temp++;i++;
+            }
+            if(i==len) return left;
+            left++;right++;
+        }
+        return -1;
+    }
+};
