@@ -19,3 +19,28 @@ Example 2:
 Input: dimensions = [[3,4],[4,3]]
 Output: 12
 Explanation: Length of diagonal is the same for both which is 5, so maximum area = 12.
+
+
+
+
+
+class Solution {
+public:
+    int areaOfMaxDiagonal(vector<vector<int>>& dimensions) {
+        double Max = -1, length = 0, width = 0;
+        for (int i = 0; i<dimensions.size(); i++){
+            double curr = sqrt(dimensions[i][0]*dimensions[i][0]+dimensions[i][1]*dimensions[i][1]);
+            if (curr > Max){
+                Max = curr;
+                length = dimensions[i][0];
+                width = dimensions[i][1];
+            } else if(curr == Max){
+                if (length * width < dimensions[i][0]*dimensions[i][1]){
+                    length = dimensions[i][0];
+                    width = dimensions[i][1];
+                }
+            }
+        }
+        return length*width;
+    }
+};
